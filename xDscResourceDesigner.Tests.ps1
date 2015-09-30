@@ -3,13 +3,14 @@
 
 end
 {
-    Remove-Module [x]DscResourceDesigner -Force
+    Get-Module xDscResourceDesigner -All | Remove-Module -Force
     Import-Module $PSScriptRoot\xDscResourceDesigner.psd1 -ErrorAction Stop
 
+$breakvar = $true;
     Describe 'xDscResourceDesigner' {
         It 'Should not error if imported twice' {
-            Remove-Module [x]DscResourceDesigner -Force
-            # { Import-Module $PSScriptRoot\xDscResourceDesigner.psd1 -ErrorAction Stop } | Should Not Throw
+            Get-Module xDscResourceDesigner -All | Remove-Module -Force
+            { Import-Module $PSScriptRoot\xDscResourceDesigner.psd1 -ErrorAction Stop } | Should Not Throw
         }
     }
 
